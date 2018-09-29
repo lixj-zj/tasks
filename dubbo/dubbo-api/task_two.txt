@@ -1,0 +1,8 @@
+﻿0. 搭建zookeeper集群
+1. 搭建dubbo-admin框架
+2. 修改父程序task_one
+3. dubbo-api, dubbo-provider, dubbo-consumer
+
+4. rpc调用数据需要加密（md5和rsa两种模式）  
+5. rpc调用转httpclient调用    
+
