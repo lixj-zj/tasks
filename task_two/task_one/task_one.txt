@@ -1,0 +1,10 @@
+﻿0. 搭建基本框架 SSM + MySQL
+1. 单元测试
+2. controller集成测试
+3. 登陆注册、查询修改
+4. Oracle数据库测试
+5. jsp -> HTML（Ajax数据传递）
+6. bootstrap集成页面
+7. 分页
+
+
