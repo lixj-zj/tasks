@@ -18,11 +18,16 @@
 	2. dubbo-admin框架搭建
 	3. 基于task_one，实现RPC调用
 
-3. Spring(4.3.10)+Mybatis+dubbo+zookeeper+redis(memcache)+kafka 搭建Redis集群（哨兵模式），消息订阅，数据传递，搭建Kafka集群。(高可用)
+3. Spring(4.3.10)+Mybatis+dubbo+zookeeper+redis(memcache) 在实现 2 的前提下，搭建Redis集群（哨兵模式）
 	要点：
 	1. 本地搭建redis(memcache)
-	2. kafka集群
-	3. rpc调用数据需要加密（md5和rsa两种模式）
-	4. rpc调用转httpclient调用
-	5. nginx安装和配置，最后提交nginx链接，Nginx(负载均衡+反向代理)
-	6. tomcat应用需要起多个（第一期交付，可以没有）
+
+4. Spring(4.3.10)+Mybatis+dubbo+zookeeper+redis(memcache)+kafka集群 在实现 3 的前提下，实现消息订阅，数据传递，搭建Kafka集群。(高可用)
+	要点：
+	1. kafka集群
+
+其余要点：
+	1. rpc调用数据需要加密（md5和rsa两种模式）
+	2. rpc调用转httpclient调用
+	3. nginx安装和配置，最后提交nginx链接，Nginx(负载均衡+反向代理)
+	4. tomcat应用需要起多个（第一期交付，可以没有）
