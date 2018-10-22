@@ -1,0 +1,96 @@
+1. java.lang.NoSuchMethodError: org.apache.log4j.Logger.isTraceEnabled()Z错误
+log4j包有冲突，删去了一个低版本的就可以了!!!
+https://blog.csdn.net/li1500742101/article/details/9040237
+
+2. kafka.common.KafkaException: Failed to parse the broker info from zookeeper: {"listener_security_protocol_map":{"PLAINTEXT":"PLAINTEXT"},"endpoints":["PLAINTEXT://TBN-0MNN5S:9092"],"jmx_port":-1,"host":"TBN-0MNN5S","timestamp":"1539585587560","port":9092,"version":4}
+本人原因：kafka配置版本不一致。本机客户端Kafka版本与pom中版本不一致，修改pom版本与本机一致即可。
+http://www.cnblogs.com/haozhengfei/archive/2017/09/11/7505419.html
+
+3. 启动报“另一个程序正在使用此文件，进程无法访问”问题
+https://blog.csdn.net/hfhwfw/article/details/79703383
+
+4. Error: Failed to parse the broker info from zookeeper
+http://www.cnblogs.com/haozhengfei/archive/2017/09/11/7505419.html
+
+5. WARN [Consumer clientId=consumer-1, groupId=console-consumer-950] Connection to node -1 could not be
+https://blog.csdn.net/getyouwant/article/details/79000524
+将kafka-console-producer.bat --broker-list localhost:9092 --topic testDemo中的local host换成本机IP（与kafka server.properties中的broker.list中写法一致）
+
+6. ERROR Error when sending message to topic helloworld with key: null, value: 3 bytes with error: (org.apache.kafka.clients.producer.internals.ErrorLoggingCallback)
+https://blog.csdn.net/caiyefly/article/details/78792981
+
+7. zookeeper java.net.SocketTimeoutException: connect timed out
+ip地址改变，修改zookeeper的zoo配置文件
+
+8. class path resource [.xml] cannot be opened because it does not exist
+pom文件中生成jar包或war包，经过编译后产生.class文件
+https://blog.csdn.net/baidu_32045201/article/details/78386058
+
+9. run as server和run as run java application
+main()方法
+https://blog.csdn.net/sc9018181134/article/details/48298491
+
+10. Failed to load class “org.slf4j.impl.StaticLoggerBinder” error
+引入包的版本问题
+https://stackoverflow.com/questions/39976339/failed-to-load-class-org-slf4j-impl-staticloggerbinder-error
+
+11. SLF4J: Failed to load class “org.slf4j.impl.StaticLoggerBinder”
+jar包版本问题
+https://stackoverflow.com/questions/7421612/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder
+
+12. Error to serialize message when sending to kafka topic
+https://stackoverflow.com/questions/43612072/error-to-serialize-message-when-sending-to-kafka-topic/43612452
+
+13. java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
+添加Maven Dependencies
+https://stackoverflow.com/questions/6210757/java-lang-classnotfoundexception-org-springframework-web-context-contextloaderl
+
+14. org.apache.kafka.common.errors.TimeoutException: Failed to update metadata after 60000 ms.
+修改listeners地址为本机IP
+https://my.oschina.net/u/3247419/blog/1189241
+
+15. WARN Error while fetching metadata with correlation id 
+添加server.properties的advertised.host.name
+https://www.2cto.com/net/201801/712758.html
+
+
+
+参考：
+单机&集群
+http://www.voidcn.com/article/p-dibwifvz-bn.html
+https://blog.csdn.net/u012050154/article/details/76270655（最基础，一步步从单机到集群）
+Java操作（用户端对应KafkaClient）：
+https://blog.csdn.net/qq_31780525/article/details/77130730
+https://blog.csdn.net/woshixiazaizhe/article/details/80610432
+https://blog.csdn.net/evankaka/article/details/52494412（修改pom的Kafka版本与本机一致）
+https://www.cnblogs.com/wushuai2014/p/7468954.html
+http://www.henryxi.com/kafka-java-example
+可能完整版参考：
+https://my.oschina.net/zhengweishan/blog/736213
+
+
+启动kafka集群步骤：
+1. D:\kafka_2.12-0.11.0.0
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+2. D:\kafka_2.12-0.11.0.0\bin\windows
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testDemo
+
+3. D:\kafka_2.12-0.11.0.0\bin\windows
+kafka-console-producer.bat --broker-list 192.168.1.2:9092 --topic testDemo
+
+4. D:\kafka_2.12-0.11.0.0\bin\windows
+kafka-console-consumer.bat --zookeeper 192.168.1.2:2181 --topic testDemo
+
+客户端调试步骤：
+1. 开启zookeeper（server与client）
+2. 开启kafka（server）
+3. 新建topic
+4. 打开producer
+5. 打开三个consumer，对应不同的localhost:端口号
+6. producer端广播消息，三个consumer端对应接收到消息
+
+感悟：
+从最基础的开始做起，一步步修改添加调试前进，不能直接上来参考别人总的、完整的代码，会影响整体的思路与最终的结果。
+
+https://www.cnblogs.com/wangb0402/p/6187796.html
