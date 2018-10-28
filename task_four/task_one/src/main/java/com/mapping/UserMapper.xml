@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.model.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="user_name" jdbcType="VARCHAR" />
+    <result column="user_password" property="user_password" jdbcType="VARCHAR" />
+  </resultMap>
+  <cache type="org.mybatis.caches.redis.RedisCache" />
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    id, user_name, user_password
+    from USER
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="addUser">
+  		<!-- userinfo_id.nextval 序列名 -->
+		insert into USER(user_name, user_password) values(#{user_name,jdbcType=VARCHAR}, #{user_password,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="findUserByNameAndPwd" resultMap="BaseResultMap" parameterType="com.model.User">
+    select 
+    user_name, user_password 
+    from USER
+    where user_name = #{user_name,jdbcType=VARCHAR} and user_password=#{user_password,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAllUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    id, user_name, user_password
+    from USER order by id desc
+  </select>
+  
+  
+</mapper>

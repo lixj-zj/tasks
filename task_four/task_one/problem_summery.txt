@@ -1,0 +1,180 @@
+1. Eclipse 修改maven 仓储Repository位置
+https://blog.csdn.net/anialy/article/details/21876099
+
+2. maven镜像修改
+https://blog.csdn.net/only_wan/article/details/52975698
+
+3. maven 转  maven web
+https://blog.csdn.net/zouxucong/article/details/56009537
+
+4. ..\target\m2e-wtp\web-resources\META-INF\MANIFEST.MF (系统找不到指定的路径）解决办法
+https://blog.csdn.net/liliang_11676/article/details/79272348
+
+5. Maven项目pom.xml文件报错“web.xml is missing and <failOnMissingWebXml> is set to   true”
+http://blog.51cto.com/wuyongzhiyi/1927436
+
+6. navicat 连接Oracle数据库 OCI更新
+https://www.cnblogs.com/taojietx/p/6627934.html
+https://blog.csdn.net/suyu_yuan/article/details/51321761
+
+7. 使用maven添加、管理oracle驱动包
+https://blog.csdn.net/dwfyzf/article/details/78983066
+
+8. Oracle 对表的基本操作
+https://blog.csdn.net/qq_33369215/article/details/52775308
+
+9. get,set快捷键
+右键--source--Generate Getters and Setters
+
+10. 模板各模块注释快捷键
+alt+shift+J
+
+11. Oracle 实现主键自增
+https://zhidao.baidu.com/question/358461319.html
+
+CREATE sequence userinfo_seq
+START WITH 1 
+INCREMENT BY 1;
+
+12. oracle 时间格式
+to_date('2018-09-15 16:36:00', 'yyyy-mm-dd hh24:mi:ss')
+
+13. No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK?
+
+14. spring报错Error creating bean with name...
+spring-mvc 扫描包
+spring-mybatis 扫描service与serviceImpl
+spring 添加数据库配置文件与扫描service
+https://blog.csdn.net/grit_icpc/article/details/58141424
+https://blog.csdn.net/zhanghe687/article/details/71214166
+
+15. 配置jdbc.properties文件
+https://blog.csdn.net/u012562943/article/details/52489447
+https://www.cnblogs.com/zhangchengzhangtuo/p/5614305.html
+
+16. Spring连接mysql数据库错误：Cannot load JDBC driver class '${driver}'
+没有引入jdbc.properties配置文件，系统无法识别
+
+17. jdk.tools-1.8.jar
+jdk.tools-1.8.jar 在jdk的中找到 不需要额外下载
+https://blog.csdn.net/fruitzerg/article/details/78339518
+
+18. eclipse解决项目validate卡住的问题
+https://blog.csdn.net/u011747152/article/details/79071388
+https://blog.csdn.net/ksdb0468473/article/details/52249028
+
+19. Not found org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+添加jar包
+<dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-annotations</artifactId>
+	<version>2.5.0</version>
+</dependency>
+<dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-core</artifactId>
+	<version>2.5.0</version>
+</dependency>
+<dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-databind</artifactId>
+	<version>2.5.0</version>
+</dependency>
+<dependency>
+	<groupId>com.fasterxml.jackson.jr</groupId>
+	<artifactId>jackson-jr-all</artifactId>
+	<version>2.5.0</version>
+</dependency>
+https://blog.csdn.net/hongweigg/article/details/46919235
+
+20. 测试环境中，添加内容：
+@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" }) 
+引入jdbc.properties文件
+
+21. impl 与 service放一起，扫描时一起扫描
+
+22. 表单内容自动提交null
+在controller中新加正常访问内容：
+	//正常访问login页面
+    @RequestMapping("/regist")
+    public String regist(){
+        return "regist";
+    }
+验证的内容写在另一个方法中：
+	@RequestMapping(value="/checkRegist", method=RequestMethod.GET)
+	public String checkRegist(User user,  HttpServletRequest request) throws UnsupportedEncodingException {
+
+https://blog.csdn.net/s740556472/article/details/71247285
+
+23. ajax response乱码 
+在@RequestMapping里的并发配置produces={"application/json;","text/html;charset=UTF-8;"}
+https://www.cnblogs.com/zique/p/6171862.html
+
+24. annotation @RequestBody is disallowed for this location
+I am stupid. The proper annotation is @ResponseBody, not @RequestBody.
+http://forum.spring.io/forum/spring-projects/roo/111922-annotation-requestbody-is-disallowed-for-this-location
+
+25. JQuery的ajax往后台传值情况
+https://blog.csdn.net/binghuazheng/article/details/78380338
+
+26. ajax后台数据返回前端：
+	0.URL问题：这个URL是指向的controller中的mapping地址，为： 项目名 + controller的mapping + function的mapping
+	1. 设置function为 @ResponseBody ，设置成只返回数据，指向页面
+	2.返回的数据显示乱码：在controller中的mapping中，添加：	@RequestMapping(produces="text/html;charset=UTF-8;")
+	3.前端的ajax中，指定数据格式为json，在后台返回时，要新建jsonobjet对象，封装数据，再传到前端ajax时可以正常解析；否则在状态正常时，也会出现解析格式错误；
+	
+27. js前端验证输入是否为空
+https://zhidao.baidu.com/question/535920141.html
+
+28. ORA-00928 missing SELECT keyword
+http://ruowu.iteye.com/blog/648677
+
+29. Oracle 链接数据库：ORA-00904: invalid identifier
+	非法标识符，说明sql写的列名可能识别不到。网上有说不能加引号，否则识别不到。
+	但是在此mapping 的xml文件中，每个用到的字段都需要加双引号才能正确识别。
+	select 
+    "id", "user_name", "user_password"
+    from "userinfo"
+    where "id" = #{id,jdbcType=INTEGER}
+
+30. html文件引用静态资源：css,js,img
+<link rel="stylesheet" href="/task/WEB-VENDER/css/signin.css" >
+设置spring-mvc.xml：
+	<!-- 静态资源存在时候不进行映射,表示WEB-VENDER下的东西都是静态资源 -->
+	<mvc:resources mapping="/WEB-VENDER/**" location="/WEB-VENDER/" />
+然后直接引用 /task/...路径即可。
+
+31. TooManyResultsException异常
+https://blog.csdn.net/liu_005/article/details/50822544
+
+32. Mapper method 'com.dao.UserDao.addUser' has an unsupported return type: class com.model.User
+addUser()方法为void类型
+https://blog.csdn.net/qq_32917699/article/details/77743453
+https://www.cnblogs.com/dushan/p/5175779.html
+
+33. 后台 list 转换成json格式：先构造json对象，再存入数据中。
+	JSONArray jsonArray = new JSONArray();
+	for(User user:userList) {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("id", user.getId());
+		jsonObject.put("user_name", user.getUser_name());
+		jsonObject.put("user_password", user.getUser_password());
+		
+		jsonArray.add(jsonObject);
+	}
+
+34. js如何把服务器里面的json数据渲染输出到html页面
+https://segmentfault.com/q/1010000012895596
+循环拼接，其他框架
+
+35. 前端json字符串解析出json对象
+https://www.cnblogs.com/songyunxinQQ529616136/p/6259559.html
+https://www.cnblogs.com/redfire/p/7702108.html
+
+36. html 换行 <br>
+
+37. sql排序：order by "" desc(降序)/asc(升序)
+
+
+
+
